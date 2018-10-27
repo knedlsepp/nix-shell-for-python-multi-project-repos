@@ -6,4 +6,4 @@ This repository tries to be an example on how to make the best use of nix-shell,
 
 # Example
 We got two python packages, `foo` depending on `bar`.
-
+In a real world scenario, this repository could house git-submodules of the individual packages.
