@@ -12,7 +12,7 @@ let
 in with pkgs; rec {
   bar = pyPkgs.buildPythonPackage rec {
     name = "bar";
-    src = (builtins.fetchGit ./.)+"/bar" ;
+    src = if lib.inNixShell then null else (builtins.fetchGit ./.)+"/bar";
     checkInputs = with pyPkgs; [
       pytest
       pytestrunner
@@ -20,7 +20,7 @@ in with pkgs; rec {
   };
   foo = pyPkgs.buildPythonPackage rec {
     name = "foo";
-    src = (builtins.fetchGit ./.)+"/foo" ;
+    src = if lib.inNixShell then null else (builtins.fetchGit ./.)+"/foo";
     propagatedBuildInputs = with pyPkgs; [
       bar
     ];
