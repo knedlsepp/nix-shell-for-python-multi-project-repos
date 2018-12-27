@@ -5,9 +5,9 @@ in
 dirs_pkgs: (pkgs.mkShell {
   inputsFrom = pkgs.lib.catAttrs "pkg" dirs_pkgs;
   shellHook = pkgs.lib.concatMapStrings (dir_pkg: ''
-    pushd ${dir_pkg.dir}
+    pushd ${dir_pkg.dir} 1>&2
     ${dir_pkg.pkg.shellHook}
-    popd
+    popd 1>&2
   '') dirs_pkgs;
 }).overrideAttrs(o: 
   let
